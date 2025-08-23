@@ -1,0 +1,10 @@
+{
+  "email": "test@example.com",
+  "password": "Test@123",
+  "workspaceName": "TestWorkspace",
+  "workspaceDescription": "This is a workspace from fixture.",
+  "newemail": "Navneet26oct@gmail.com",
+  "foldername": "TestFolder",
+  "newfoldername": "UpdatedTestFolder"
+
+}
