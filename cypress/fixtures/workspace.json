@@ -5,6 +5,9 @@
   "workspaceDescription": "This is a workspace from fixture.",
   "newemail": "Navneet26oct@gmail.com",
   "foldername": "TestFolder",
-  "newfoldername": "UpdatedTestFolder"
+  "newfoldername": "UpdatedTestFolder",
+  "workspaceupdatedescription": "Project space updated successfully",
+  "workspacecreatedescription": "Workspace created successfully",
+  "workspacedeletedescription": "Workspace deleted successfully"
 
 }

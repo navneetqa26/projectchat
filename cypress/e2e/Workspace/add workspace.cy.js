@@ -51,8 +51,8 @@ describe('ProjectChat Workspace', () => {
    cy.get('button[type="submit"]').contains('Add').click()
 
    //Verify that Workspace created successfully
-    // cy.contains('Workspace created successfully').should('be.visible');
-    textShouldbeVisible("Workspace created successfully");
+   // cy.contains('Workspace created successfully').should('be.visible');
+    textShouldbeVisible(workspaceData.workspacecreatedescription);
 });
 
   it('Editing project', () => {
@@ -71,7 +71,7 @@ describe('ProjectChat Workspace', () => {
 
    //Verify that Workspace created successfully
     //cy.contains('Workspace created successfully').should('be.visible');
-    textShouldbeVisible("Workspace created successfully");
+    textShouldbeVisible(workspaceData.workspacecreatedescription);
     cy.get('.space-x-4 > :nth-child(2) > .flex > .hidden').click()
     //Click on edit button
     cy.get('.absolute > :nth-child(2) > span').click()
@@ -82,7 +82,7 @@ describe('ProjectChat Workspace', () => {
     cy.get('button[type="submit"]').contains('Save Changes').click()
       //Verify that Workspace updated successfully
     //cy.contains('Project space updated successfully').should('be.visible');
-    textShouldbeVisible("Project space updated successfully");
+    textShouldbeVisible(workspaceData.workspaceupdatedescription);
   
   });
 
@@ -103,7 +103,7 @@ describe('ProjectChat Workspace', () => {
 
    //Verify that Workspace created successfully
     // cy.contains('Workspace created successfully').should('be.visible');
-    textShouldbeVisible("Workspace created successfully");
+    textShouldbeVisible(workspaceData.workspacecreatedescription);
    // Click on the workspace to edit
     cy.get('.space-x-4 > :nth-child(2) > .flex > .hidden').click()
     //Click on delete button
@@ -111,7 +111,7 @@ describe('ProjectChat Workspace', () => {
     
       //Verify that Workspace deleted successfully
     // cy.contains('Workspace deleted successfully').should('be.visible');
-    textShouldbeVisible("Workspace deleted successfully");
+    textShouldbeVisible(workspaceData.workspacedeletedescription);
   });
 
 
