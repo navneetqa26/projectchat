@@ -41,7 +41,7 @@ describe('Move files to folder', () => {
    cy.get('button[type="submit"]').contains('Add').click()
 
    //Verify that Workspace created successfully
-    cy.contains('Workspace created successfully').should('be.visible');
+    cy.contains(workspaceData.workspacecreatedescription).should('be.visible');
 
     //Click on workspace
     cy.contains("Projects").click();
