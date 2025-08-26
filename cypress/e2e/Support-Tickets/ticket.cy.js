@@ -16,14 +16,21 @@ describe('Support Ticket Creation', () => {
     cy.fixture('supportticket').then((data) => {
       cy.visit('https://dev.projectchat.ai/project-spaces')
       ticketPage.createTicket(data.ticketTitle, data.ticketDescription, data.priority)
-      ticketPage.elements.successToast().should('be.visible')
     })
   })
     it('should create and close a support ticket successfully', () => {
     cy.fixture('supportticket').then((data) => {
       cy.visit('https://dev.projectchat.ai/project-spaces')
       ticketPage.createTicket(data.ticketTitle, data.ticketDescription, data.priority)
-      ticketPage.elements.successToast().should('be.visible')
+      ticketPage.closeticket()
     })
+    
   })
+  it.only('should create a support ticket successfully and check filter', () => {
+    cy.fixture('supportticket').then((data) => {
+      cy.visit('https://dev.projectchat.ai/project-spaces')
+      ticketPage.createTicket(data.ticketTitle, data.ticketDescription, data.priority)
+      ticketPage.filter()
+    })
+})
 })

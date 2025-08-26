@@ -1,0 +1,114 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-08-26T13:36:04.828Z",
+    "end": "2025-08-26T13:36:19.192Z",
+    "duration": 14364,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "86a65e46-0005-4f72-a01c-0838934afc0e",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Workspace\\Movefilestofolder.cy.js",
+      "file": "cypress\\e2e\\Workspace\\Movefilestofolder.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d936d254-a709-4f1a-a18e-55eeef2500df",
+          "title": "Move files to folder",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "File Moves to new folder",
+              "fullTitle": "Move files to folder File Moves to new folder",
+              "timedOut": null,
+              "duration": 14129,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  {\n    \"title\": \"cypress-mochawesome-reporter-videos-failed\",\n    \"value\": \"cypress\\\\e2e\\\\Workspace\\\\Movefilestofolder.cy.js\"\n  },\n  {\n    \"title\": \"cypress-mochawesome-reporter-screenshots\",\n    \"value\": [\n      [\n        \"\\\\Workspace\\\\Movefilestofolder.cy.js\\\\Move files to folder -- File Moves to new folder (failed).png\"\n      ]\n    ]\n  }\n]",
+              "code": "// Add project\ncy.get('button').contains('Add a Project Space').click();\ncy.get('.mb-6 > .text-2xl').should('be.visible').and('contain', 'Add a Workspace');\n// Enter a name\nconst uniqueName = `${workspaceData.workspaceName}_${Date.now()}`;\ncy.get('.space-y-6 > :nth-child(1) > .w-full').type(uniqueName);\ncy.get('.space-y-6 > :nth-child(2) > .w-full').type(workspaceData.workspaceDescription);\n// Click the create button\ncy.get('button[type=\"submit\"]').contains('Add').click();\n//Verify that Workspace created successfully\ncy.contains(workspaceData.workspacecreatedescription).should('be.visible');\n//Click on workspace\ncy.contains(\"Projects\").click();\n// CLick on uploads\ncy.contains(\"Uploads\").click();\n//Click on new folder button\ncy.get('button').contains('New Folder').click();\ncy.get('.flex-grow').type(workspaceData.foldername);\n//Click on create button\ncy.get(\"button[class='bg-[#0F2DC2] dark:bg-[#9AA9F2] text-white dark:text-[#000] px-4 py-2 rounded-lg font-bold disabled:opacity-60']\").click();\n//Verify folder created successfully\ncy.contains('Folder created successfully').should('be.visible');\n// Click on folder\ncy.contains('TestFolder').click();\n// Click on Upload File button\ncy.get('button').contains('Upload File').click();\n//Upload a file \nconst fileName = 'GanttData (2).xlsx'; // Ensure this file is in the cypress/fixtures directory\ncy.get('input[type=\"file\"]').attachFile(fileName);\n// Verify the file upload success message or the presence of the file in the list\ncy.contains('GanttData (2).xlsx').should('be.visible');\n//Click on upload filesbutton\ncy.get('button.bg-\\\\[\\\\#0F2DC2\\\\]').should('be.visible').click();\n//Verify file uploaded successfully\ncy.contains('Files uploaded successfully!').should('be.visible');\n//Click on menu icon in actioncolumn\ncy.get('.file-button-wrapper-new').click();\n//Click on Move to folder option\ncy.get('.file-tooltip-wrapper > :nth-child(3)').click();\n//See add to folder model\ncy.get('.border-gray-200 > .text-xl').contains('Add to folder').should('be.visible');\ncy.get('.flex-rc > .border').type(workspaceData.newfoldername);\ncy.get('.light-blue-btn').click();\ncy.contains('Folder created successfully').should('be.visible');\n//Click on folder\ncy.contains('UpdatedTestFolder').click();\n//Click on move files button\ncy.get('.mt-12 > .primary-btn').click();\ncy.contains('Files moved to folder successfully').should('be.visible');\n//Click on back button\ncy.contains('Back').click();\ncy.contains(workspaceData.newfoldername).should('be.visible').click();\ncy.contains('GanttData (2).xlsx').should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Projects' but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Projects' but never did.\n    at Context.eval (webpack://projectchat/./cypress/e2e/Workspace/Movefilestofolder.cy.js:47:7)",
+                "diff": null
+              },
+              "uuid": "1620fa87-81cb-41eb-971b-32aaa1161754",
+              "parentUUID": "d936d254-a709-4f1a-a18e-55eeef2500df",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "1620fa87-81cb-41eb-971b-32aaa1161754"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 14129,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "reportPageTitle": "custom-title",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

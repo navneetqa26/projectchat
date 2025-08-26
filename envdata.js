@@ -10,5 +10,4 @@ var envData = {
     baseUrl: process.env.BASEURL
     };
 
-
 module.exports = envData;

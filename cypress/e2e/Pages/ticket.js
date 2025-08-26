@@ -14,7 +14,9 @@ class SupportTicketPage {
     // Backtoticket:()=> cy.contains('Back to Tickets').click()
     clickonticket:()=>cy.get(':nth-child(1) > .flex-1 > .flex > .text-xl'),
     clickoncloseticket:()=>cy.get('.mt-2'),
-    ticketclosed:()=>cy.contains('Ticket closed successfully')
+    ticketclosed:()=>cy.contains('Ticket closed successfully'),
+    clickonfilter:()=>cy.contains('Filter'),
+    allstatus:()=>cy.contains('All Status'),
   }
 
   createTicket(title, description, priority) {
@@ -28,9 +30,17 @@ class SupportTicketPage {
     this.elements.submitButton()
     this.elements.successToast().should('be.visible')
     // this.elements.Backtoticket()
+  
+  }
+
+  closeticket(){
     this.elements.clickonticket().click()
     this.elements.clickoncloseticket().click()
     this.elements.ticketclosed().should('be.visible')
+  }
+  filter(){
+    this.elements.clickonfilter().click()
+    this.elements.allstatus().click({ force: true })
   }
 }
 
