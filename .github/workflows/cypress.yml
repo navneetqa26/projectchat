@@ -17,28 +17,27 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Install Dependencies
-        run: |
-          npm install --legacy-peer-deps
-        shell: bash
+        run: npm install --legacy-peer-deps
+
+      - name: Install Cypress binary
+        run: npx cypress install
+
+      - name: Fix Cypress permissions (if needed)
+        run: chmod +x ./node_modules/.bin/cypress
 
       - name: Run Cypress 
-        run: |
-          npx cypress run
-        shell: bash
+        run: npx cypress run
 
       - name: Copy Cypress videos into report folder
         run: |
-          mkdir -p projectchat/cypress/reports/html/videos/cypress/e2e/tests
-          # Copy videos both ways so both possible paths resolve
-          cp -r projectchat/cypress/videos/* projectchat/cypress/reports/html/videos/ || true
-          cp -r projectchat/cypress/videos/* projectchat/cypress/reports/html/videos/cypress/e2e/tests/ || true
-          cp -r projectchat/cypress/videos/* videos/cypress/e2e/ || true
-          cp -r projectchat/cypress/videos/* videos || true
+          mkdir -p cypress/reports/html/videos/cypress/e2e/tests
+          cp -r cypress/videos/* cypress/reports/html/videos/ || true
+          cp -r cypress/videos/* cypress/reports/html/videos/cypress/e2e/tests/ || true
+          cp -r cypress/videos/* videos/cypress/e2e/ || true
+          cp -r cypress/videos/* videos || true
    
       - name: Upload report artifact to give other job to access the generated report
         uses: actions/upload-artifact@v4
         with:
           name: cypress-report
-          path: projectchat/cypress/reports/html
-
-  
+          path: cypress/reports/html
