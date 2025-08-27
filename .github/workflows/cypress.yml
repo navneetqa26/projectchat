@@ -1,4 +1,4 @@
-name: run cypress
+name: Run Cypress and Deploy Report
 
 on:
   workflow_dispatch:
@@ -6,6 +6,7 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,21 +20,18 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Run Cypress tests
-        run: npm run cypress:run
-
-      - name: Generate MochaAwesome Report
-        run: npm run cypress:report
+        run: npx cypress run --reporter mochawesome --reporter-options overwrite=false,html=true,json=true,reportDir=cypress/reports/html
 
       - name: Upload report artifact
-        if: always()
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: cypress-report
           path: cypress/reports/html
 
       - name: Deploy report to GitHub Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: cypress/reports/html
