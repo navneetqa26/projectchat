@@ -1,39 +1,36 @@
 name: run cypress
 
 on: 
-  workflow_dispatch: # Allow you to run it manually from GitHub
+  workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-  
 jobs:
-  clone_repo_add_cypress_data:
-    runs-on: ubuntu-22.04
-    steps: 
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
       - name: Install dependencies
         run: npm install --legacy-peer-deps
+
+      # ✅ Explicitly install Cypress so it's available
+      - name: Install Cypress binary
+        run: npx cypress install
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          install-command: npm install --legacy-peer-deps
+          install: false   # 🚀 don’t let the action re-install
           runTests: true
 
-      - name: Copy Cypress videos into report folder
-        run: |
-          mkdir -p cypress/reports/html/videos/cypress/e2e/tests
-          cp -r cypress/videos/* cypress/reports/html/videos/ || true
-          cp -r cypress/videos/* cypress/reports/html/videos/cypress/e2e/tests/ || true
-          cp -r cypress/videos/* videos/cypress/e2e/ || true
-          cp -r cypress/videos/* videos || true
-   
       - name: Upload report artifact
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: cypress-report
           path: cypress/reports/html
