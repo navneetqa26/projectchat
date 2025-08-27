@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:run": "cypress run",
+    "cypress:report": "marge cypress/reports/html/*.json --reportDir cypress/reports/html --inline"},
   "keywords": [],
   "author": "",
   "license": "ISC",

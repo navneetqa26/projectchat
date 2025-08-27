@@ -9,6 +9,10 @@ module.exports = defineConfig({
     embeddedScreenshots: true,
     inlineAssets: true,
     saveAllAttempts: false,
+    reportDir: 'cypress/reports/html',
+    overwrite: false,
+    html: true,
+    json: true,
   },
   
  video: true,
