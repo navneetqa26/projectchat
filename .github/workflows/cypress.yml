@@ -18,13 +18,11 @@ jobs:
       
       - name: Install Dependencies
         run: |
-          cd projectchat
           npm install --legacy-peer-deps
         shell: bash
 
       - name: Run Cypress 
         run: |
-          cd projectchat
           npx cypress run
         shell: bash
 
