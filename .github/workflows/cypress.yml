@@ -15,17 +15,15 @@ jobs:
         with:
           node-version: 18
 
+      # 📦 Install project dependencies (including Cypress)
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      # ✅ Explicitly install Cypress so it's available
-      - name: Install Cypress binary
-        run: npx cypress install
-
+      # ✅ No need for "npx cypress install" now
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          install: false   # 🚀 don’t let the action re-install
+          install: false
           runTests: true
 
       - name: Upload report artifact
