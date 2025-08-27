@@ -16,9 +16,11 @@ jobs:
         with:
           node-version: 18
 
-      # 🚀 Force install, ignore peer deps
       - name: Install dependencies
         run: npm install --force --legacy-peer-deps
+
+      - name: Verify Cypress binary
+        run: npx cypress install
 
       - name: Run Cypress tests
         run: npx cypress run --reporter mochawesome --reporter-options overwrite=false,html=true,json=true,reportDir=cypress/reports/html
