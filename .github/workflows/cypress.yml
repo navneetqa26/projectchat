@@ -1,6 +1,7 @@
 name: run cypress
+
 on: 
-  workflow_dispatch: # Allow you to run it manually from github
+  workflow_dispatch: # Allow you to run it manually from GitHub
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -15,13 +16,13 @@ jobs:
       - name: Checkout # clone the repository into the runner environment
         uses: actions/checkout@v4
       
-      - name: Install Dependecies
+      - name: Install Dependencies
         run: |
           cd projectchat
           npm install --legacy-peer-deps
         shell: bash
 
-      - name: run Cypress 
+      - name: Run Cypress 
         run: |
           cd projectchat
           npx cypress run
@@ -42,31 +43,4 @@ jobs:
           name: cypress-report
           path: projectchat/cypress/reports/html
 
-  display_report:
-    runs-on: ubuntu-22.04
-    timeout-minutes: 5
-    needs: [clone_repo_add_cypress_data]
-    environment:
-      name: github-pages
-
-    steps: 
-      - name: Checkout 
-        uses: actions/checkout@v4
-
-      - name: Download Cypress report artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: cypress-report
-          path: projectchat/cypress/reports/html
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
   
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'projectchat/cypress/reports/html'
-    
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
