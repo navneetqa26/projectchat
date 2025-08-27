@@ -1,6 +1,6 @@
 name: run cypress
 
-on: 
+on:
   workflow_dispatch:
 
 jobs:
@@ -15,26 +15,22 @@ jobs:
         with:
           node-version: 18
 
-      # 📦 Install project dependencies (including Cypress)
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      # ✅ Run Cypress tests
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           runTests: true
 
-      # 📤 Upload report as artifact (private, downloadable)
       - name: Upload report artifact
-        uses: actions/upload-artifact@v4
         if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-report
           path: cypress/reports/html
 
-      # 🌍 Step 1: Deploy report to GitHub Pages (publicly accessible)
-      -  name: Deploy report to GitHub Pages
+      - name: Deploy report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
