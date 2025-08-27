@@ -3,7 +3,6 @@ name: run cypress
 on: 
   workflow_dispatch: # Allow you to run it manually from GitHub
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -13,20 +12,16 @@ jobs:
   clone_repo_add_cypress_data:
     runs-on: ubuntu-22.04
     steps: 
-      - name: Checkout # clone the repository into the runner environment
+      - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Install Cypress binary
-        run: npx cypress install
-
-      - name: Fix Cypress permissions (if needed)
-        run: chmod +x ./node_modules/.bin/cypress
-
-      - name: Run Cypress 
-        run: npx cypress run
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          command: npx cypress run
 
       - name: Copy Cypress videos into report folder
         run: |
@@ -36,7 +31,7 @@ jobs:
           cp -r cypress/videos/* videos/cypress/e2e/ || true
           cp -r cypress/videos/* videos || true
    
-      - name: Upload report artifact to give other job to access the generated report
+      - name: Upload report artifact
         uses: actions/upload-artifact@v4
         with:
           name: cypress-report
