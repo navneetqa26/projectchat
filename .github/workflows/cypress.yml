@@ -1,7 +1,7 @@
 name: run cypress
 
 on: 
-  workflow_dispatch: # Allow you to run it manually from GitHub
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -9,31 +9,43 @@ permissions:
   id-token: write
   
 jobs:
-  clone_repo_add_cypress_data:
+  cypress-run:
     runs-on: ubuntu-22.04
     steps: 
       - name: Checkout
         uses: actions/checkout@v4
-      
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
       - name: Install dependencies
+        working-directory: projectchat
         run: npm install --legacy-peer-deps
+
+      - name: Fix Cypress binary permissions
+        working-directory: projectchat
+        run: chmod +x ./node_modules/.bin/cypress || true
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
+          working-directory: projectchat
           install-command: npm install --legacy-peer-deps
           command: npx cypress run
 
       - name: Copy Cypress videos into report folder
+        working-directory: projectchat
         run: |
           mkdir -p cypress/reports/html/videos/cypress/e2e/tests
           cp -r cypress/videos/* cypress/reports/html/videos/ || true
           cp -r cypress/videos/* cypress/reports/html/videos/cypress/e2e/tests/ || true
           cp -r cypress/videos/* videos/cypress/e2e/ || true
           cp -r cypress/videos/* videos || true
-   
+
       - name: Upload report artifact
         uses: actions/upload-artifact@v4
         with:
           name: cypress-report
-          path: cypress/reports/html
+          path: projectchat/cypress/reports/html
