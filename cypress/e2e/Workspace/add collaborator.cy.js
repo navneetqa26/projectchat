@@ -27,6 +27,7 @@ describe('Add a collaborator', () => {
       // Click the sign-in button
     cy.get('button[type="submit"]').click();    
     cy.contains('Welcome Tester !').should('be.visible');   
+    cy.wait(2000); // Wait for 2 seconds to ensure the dashboard loads completely
   });
 
    

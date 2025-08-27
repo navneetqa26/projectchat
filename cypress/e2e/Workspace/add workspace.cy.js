@@ -57,6 +57,7 @@ describe('ProjectChat Workspace', () => {
 
   it('Editing project', () => {
 
+    cy.wait(2000); // Wait for 2 seconds to ensure the dashboard loads completely
 
     // Add project
     cy.get('button').contains('Add a Project Space').click();

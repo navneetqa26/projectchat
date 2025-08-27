@@ -27,6 +27,8 @@ describe('File Uploads', () => {
       // Click the sign-in button
     cy.get('button[type="submit"]').click();    
     cy.contains('Welcome Tester !').should('be.visible');   
+        cy.wait(2000); // Wait for 2 seconds to ensure the dashboard loads completely
+
   });
 
   it('Create a folder and upload a file', () => {
@@ -89,6 +91,7 @@ describe('File Uploads', () => {
 
    //Verify that Workspace created successfully
     cy.contains('Workspace created successfully').should('be.visible');
+    cy.wait(2000); // Wait for 2 seconds to ensure the dashboard loads completely
 
     //Click on workspace
     cy.contains("Projects").click();
