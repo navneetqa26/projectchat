@@ -19,15 +19,24 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      # ✅ No need for "npx cypress install" now
+      # ✅ Run Cypress tests
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-           runTests: true
+          runTests: true
 
+      # 📤 Upload report as artifact (private, downloadable)
       - name: Upload report artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-report
           path: cypress/reports/html
+
+      # 🌍 Step 1: Deploy report to GitHub Pages (publicly accessible)
+      - name: Deploy report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: cypress/reports/html
