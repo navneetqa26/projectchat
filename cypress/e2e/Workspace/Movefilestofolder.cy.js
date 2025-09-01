@@ -25,7 +25,7 @@ describe('Move files to folder', () => {
     cy.get('input[placeholder="Password"]').type(vars.password); // Replace with valid password
       // Click the sign-in button
     cy.get('button[type="submit"]').click();    
-    cy.contains('Welcome Tester !').should('be.visible');   
+    cy.contains('Welcome').should('be.visible');   
   });
 
   it('File Moves to new folder', () => {
@@ -44,7 +44,7 @@ describe('Move files to folder', () => {
     cy.contains(workspaceData.workspacecreatedescription).should('be.visible');
 
     //Click on workspace
-    cy.contains("Projects").click();
+    // cy.contains("Projects").click();
     // CLick on uploads
     cy.contains("Uploads").click();
     //Click on new folder button

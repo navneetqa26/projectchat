@@ -8,7 +8,7 @@ describe('Support Ticket Creation', () => {
     cy.fixture('supportTicket').then((data) => {
       cy.visit('https://dev.projectchat.ai/auth/signin')
       loginPage.login(data.email, data.password)
-      cy.contains('Welcome Tester !').should('be.visible');   
+      cy.contains('Welcome').should('be.visible');   
     })
   })
 

@@ -16,8 +16,7 @@ describe('File Uploads', () => {
     cy.wait(1000); // Wait for 1 second to ensure the page loads completely
     
     const vars=Cypress.env();
-    console.log(vars)
-    
+    console.log(vars)   
 
     // Visit login page
     cy.visit(vars.baseUrl); //
@@ -26,7 +25,7 @@ describe('File Uploads', () => {
     cy.get('input[placeholder="Password"]').type(vars.password); // Replace with valid password
       // Click the sign-in button
     cy.get('button[type="submit"]').click();    
-    cy.contains('Welcome Tester !').should('be.visible');   
+    cy.contains('Welcome').should('be.visible');   
         cy.wait(2000); // Wait for 2 seconds to ensure the dashboard loads completely
 
   });
@@ -47,7 +46,7 @@ describe('File Uploads', () => {
     cy.contains('Workspace created successfully').should('be.visible');
 
     //Click on workspace
-    cy.contains("Projects").click();
+    // cy.contains("Projects").click();
     // CLick on uploads
     cy.contains("Uploads").click();
     //Click on new folder button

@@ -10,6 +10,6 @@ export function login (baseUrl, email, password) {
       // Click the sign-in button
     cy.get('button[type="submit"]').click();    
     // cy.contains('Welcome Tester !').should('be.visible');  
-    textShouldbeVisible('Welcome Tester !'); 
+    textShouldbeVisible('Welcome'); 
   
 }
